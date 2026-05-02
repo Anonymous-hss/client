@@ -89,6 +89,8 @@ export function ChatInterface() {
             setCheckpointId(data.checkpoint_id);
           } else if (data.type === "content") {
             const text = data.content;
+            if (!text) return; // Ignore empty strings from tool call chunks
+            
             setMessages((prev) =>
               prev.map((msg) =>
                 msg.id === botMsgId
@@ -195,6 +197,8 @@ export function ChatInterface() {
                 setCheckpointId(data.checkpoint_id);
               } else if (data.type === "content") {
                 const text = data.content;
+                if (!text) return; // Ignore empty strings
+
                 setMessages((prev) =>
                   prev.map((msg) =>
                     msg.id === botMsgId
